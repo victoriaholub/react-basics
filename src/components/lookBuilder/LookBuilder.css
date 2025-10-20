@@ -1,0 +1,23 @@
+
+.lookBuilder {
+  border-left: 1px solid #000;
+  min-width: 521px;
+  height: 100%;
+  padding: 29px 27px 46px 29px;
+  z-index: 30;
+  position: relative;
+  background: white;
+
+  .headerSection {
+    display: flex;
+    justify-content: space-between;
+  }
+  h3 {
+    margin: 8px 0 18px;
+  }
+
+  
+}
+
+
+

@@ -1,0 +1,30 @@
+.clothingItem {
+  width: 327px;
+  position: relative;
+  .photo {
+    width: 327px;
+    background-color: #F6F6F6;
+    display: flex;
+    justify-content: center;
+  }
+  .selection {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    margin: 16px;
+    display: flex;
+    justify-content: space-between;
+    
+  }
+
+  .sposnsored {
+    color: #8c8c8c;
+    margin-top: 11px;
+  }
+
+  .brand, .model {
+    margin-top: 3px;
+  }
+
+}

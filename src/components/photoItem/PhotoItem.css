@@ -1,0 +1,33 @@
+.photoItem {
+  .nameBrand {
+    margin: 6px 0px;
+  }
+
+  .descriptionBrand {
+    margin-bottom: 24px;
+  }
+}
+
+.outfitPhotoItem {
+  width: 111.5px;
+  position: relative;
+
+  img {
+    width: 111.5px;
+    height: 122px;
+  }
+
+  .inputCheckbox {
+    position: absolute;
+    top: 7px;
+    right: 5px;
+    width: 16px;
+    accent-color: #000;
+    background: #fff;
+    cursor: pointer;
+  }
+}
+
+.ant-modal .ant-modal-content {
+  padding: 24px;
+}

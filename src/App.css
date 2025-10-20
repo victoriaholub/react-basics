@@ -1,0 +1,106 @@
+* {
+  /* box-sizing: border-box; */
+  font-family: "Helvetica", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+h1 {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 24px;
+  font-weight: 400;
+}
+
+p.big {
+  font-size: 16px;
+}
+
+p.medium {
+  font-size: 14px;
+  line-height: 22px;
+}
+
+p.small {
+  font-size: 12px;
+}
+
+.roboto {
+  font-family: "Roboto", sans-serif;
+}
+
+/* .helvetica {
+  font-family: 'Helvetica', sans-serif;
+} */
+
+.timesNewRoman {
+  font-family: "Times New Roman", serif;
+}
+
+.ant-tabs-card > .ant-tabs-nav .ant-tabs-tab {
+  border-top-left-radius: 2px !important;
+  border-top-right-radius: 2px !important;
+  &:hover {
+    color: #262626 !important;
+  }
+}
+
+/* .ant-tabs-top >.ant-tabs-nav {
+  margin-bottom: 18px;
+} */
+
+.ant-tabs-card > .ant-tabs-nav .ant-tabs-tab-active {
+  background-color: #262626;
+  & div {
+    color: #fff !important;
+  }
+}
+
+.ant-radio-wrapper .ant-radio-checked .ant-radio-inner {
+  border-color: #000 !important;
+  background-color: #000 !important;
+}
+.ant-radio-wrapper:hover .ant-radio-inner {
+  border-color: #000 !important;
+}
+
+.ant-btn {
+  border-radius: 2px;
+}
+
+.ant-btn.ant-btn-variant-outlined:hover {
+  color: #000 !important;
+  border-color: #000 !important;
+}
+
+.ant-tabs .ant-tabs-tab-btn:active {
+  color: #000 !important;
+}
+
+.ant-radio-label {
+  font-family: "Roboto", sans-serif;
+}
+
+.ant-modal-header {
+  padding-bottom: 16px !important;
+  border-bottom: 1px solid #d9d9d9 !important;
+  margin-bottom: 8px;
+}
+.ant-modal-footer {
+  padding-top: 24px !important;
+  border-top: 1px solid #d9d9d9 !important;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0;
+}

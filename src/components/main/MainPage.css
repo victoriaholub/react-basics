@@ -1,0 +1,73 @@
+.mainPage {
+  display: flex;
+  justify-content: space-between;
+
+  .banner {
+    padding: 0px 49px 0px 45px;
+    z-index: 10;
+
+    .genderButtons {
+      position: absolute;
+      display: flex;
+      gap: 8px;
+      top: 40px;
+      left: 50px;
+      z-index: 30;
+      button {
+        font-weight: 700;
+      }
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      height: 25.5px;
+      width: 100%;
+      z-index: 5;
+      background-color: #efeff0;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      border-bottom: 1px solid black;
+      top: 107.5px;
+      width: 100%;
+      left: 0;
+      z-index: 20;
+    }
+    img {
+      position: relative;
+      z-index: 10;
+    }
+  }
+
+  .mainSection {
+    padding: 0px 49px 30px 45px;
+    .headerSection {
+      margin-top: 39px;
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+
+      .mainMenu {
+        color: #00000073;
+      }
+
+      h1 {
+        margin-top: 29px;
+      }
+
+      h3 {
+        margin-top: 8px;
+      }
+    }
+  }
+
+  .clothesList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding-top: 29px;
+  }
+}

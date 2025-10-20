@@ -1,0 +1,45 @@
+.selectedModelsCarousel {
+  position: absolute;
+  bottom: 25px;
+  left: 25px;
+  color: #fff !important;
+
+  .wardrobeSection {
+    color: white;
+    font-size: 16px;
+    padding-left: 0;
+    padding-right: 0;
+    &:hover {
+      color: white !important;
+    }
+  }
+
+  .photoList {
+    display: flex;
+  }
+
+  .modelItem {
+    img {
+      height: 156px;
+    }
+
+    &.selected {
+      border: 1px solid white;
+    }
+  }
+}
+
+.modelTab {
+  .carouselLayout {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 57px;
+    top: 254px;
+    background: linear-gradient(
+      360deg,
+      #000000 -35.5%,
+      rgba(102, 102, 102, 0) 100%
+    );
+  }
+}

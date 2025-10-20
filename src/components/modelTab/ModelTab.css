@@ -1,0 +1,42 @@
+.modelTab {
+  padding-top: 18px;
+
+  .modelItems {
+    margin-bottom: 42px;
+  }
+  .modelItem {
+    cursor: pointer;
+    padding: 7px 5px 6px;
+
+    &.selected {
+      border: 1px solid black;
+    }
+  }
+
+  .selectedClothes {
+    margin-bottom: 53px;
+  }
+
+  .loading {
+      position: absolute;
+      height: 22px;
+      transform: translate(50%, -70%);
+      top: 60%;
+      right: 50%;
+      color: #fff;
+
+      &::before {
+        content: "";
+
+      }
+    }
+
+  .buttonGroup {
+    display: flex;
+    margin-top: 18px;
+    gap: 12px;
+    button {
+      width: 100%;
+    }
+  }
+}

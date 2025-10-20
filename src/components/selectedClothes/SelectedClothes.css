@@ -1,0 +1,26 @@
+.selectedClothes {
+  .title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+  .wardrobe {
+    padding-top: 48px;
+    border-top: 1px solid #000;
+
+    .photoList {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+    .photoItem {
+      position: relative;
+      width: 163px;
+      button {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+      }
+    }
+  }
+}

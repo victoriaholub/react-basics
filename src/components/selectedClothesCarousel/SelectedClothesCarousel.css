@@ -2,23 +2,23 @@
   position: absolute;
   bottom: 25px;
   left: 25px;
-  color: #fff !important;
+  color: #000 !important;
   .title {
     font-size: 16px;
     font-weight: 700;
     margin-bottom: 16px;
   }
   .ant-radio-wrapper {
-    color: #fff;
+    color: #000;
   }
 
   .wardrobeSection {
-    color: white;
+    color: #000;
     font-size: 16px;
     padding-left: 0;
     padding-right: 0;
     &:hover {
-      color: white !important;
+      color: #000 !important;
     }
   }
 

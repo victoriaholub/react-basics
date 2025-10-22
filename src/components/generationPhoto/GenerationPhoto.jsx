@@ -24,8 +24,6 @@ export function GenerationPhoto({
   const [isLoading, setIsLoading] = useState(false);
   const [shouldGenerate, setShouldGenerate] = useState(isGenerating);
   const [lastTriedOnOptions, setLastTriedOnOptions] = useState(null);
-  
-
   const generatePhoto = () => {
     if (selectedOptionsForBuild.model) {
       setShouldGenerate(true);
@@ -116,11 +114,24 @@ export function GenerationPhoto({
 
   return (
     <div className="selectedPhoto">
-      {!!generatedModel?.model ? (
-        <img src={generatedModel.model} width="520px" height="741px" />
-      ) : (
-        <img src={modelSrc} alt="Uploaded" width="520px" height="741px" />
-      )}
+      <div style={{ backgroundColor: "#f6f6f6", height: "741px" }}>
+        {!!generatedModel?.model ? (
+          <img
+            src={generatedModel.model}
+            width="520px"
+            height="741px"
+            style={{ objectFit: "contain" }}
+          />
+        ) : (
+          <img
+            src={modelSrc}
+            alt="Uploaded"
+            width="520px"
+            height="741px"
+            style={{ objectFit: "contain" }}
+          />
+        )}
+      </div>
       <div className="carouselLayout">
         {!isLoading ? (
           <SelectedClothesCarousel
@@ -148,7 +159,6 @@ export function GenerationPhoto({
           Upload new photo
         </Button>
         {!generatedModel?.model || !isSelectedOptionsForBuildSame ? (
-         
           <Button
             variant="solid"
             color="default"
@@ -158,7 +168,7 @@ export function GenerationPhoto({
             Try On
           </Button>
         ) : (
-           <Button
+          <Button
             variant="solid"
             color="default"
             icon={<UploadOutlined />}

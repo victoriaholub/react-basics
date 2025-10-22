@@ -2,20 +2,23 @@
   position: absolute;
   bottom: 25px;
   left: 25px;
-  color: #fff !important;
+  color: #000 !important;
 
   .wardrobeSection {
-    color: white;
+    color: #000;
     font-size: 16px;
     padding-left: 0;
     padding-right: 0;
     &:hover {
-      color: white !important;
+      color: #000 !important;
     }
   }
 
   .photoList {
     display: flex;
+    width: 440px;
+    padding-bottom: 8px;
+    overflow-x: scroll;
   }
 
   .modelItem {
@@ -36,10 +39,5 @@
     right: 0;
     bottom: 57px;
     top: 254px;
-    background: linear-gradient(
-      360deg,
-      #000000 -35.5%,
-      rgba(102, 102, 102, 0) 100%
-    );
   }
 }

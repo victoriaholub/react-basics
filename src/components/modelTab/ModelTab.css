@@ -2,7 +2,13 @@
   padding-top: 18px;
 
   .modelItems {
-    margin-bottom: 42px;
+    margin-bottom: 4px;
+    &>div {
+      padding-bottom: 38px;
+      width: 500px;
+      overflow-x: scroll;
+
+    }
   }
   .modelItem {
     cursor: pointer;

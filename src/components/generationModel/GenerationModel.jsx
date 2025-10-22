@@ -14,11 +14,24 @@ export function GenerationModel({
 
   return (
     <div className="selectedPhoto">
-      {!!generatedModel?.model ? (
-        <img src={generatedModel.model} width="520px" height="741px" />
-      ) : (
-        <img src={modelSrc} alt="Uploaded" width="520px" height="741px" />
-      )}
+      <div style={{ backgroundColor: "#f6f6f6", height: "741px" }}>
+        {!!generatedModel?.model ? (
+          <img
+            src={generatedModel.model}
+            width="520px"
+            height="741px"
+            style={{ objectFit: "contain" }}
+          />
+        ) : (
+          <img
+            src={modelSrc}
+            alt="Uploaded"
+            width="520px"
+            height="741px"
+            style={{ objectFit: "contain" }}
+          />
+        )}
+      </div>
       <div className="carouselLayout">
         {!isLoading ? (
           <>{carouselComponent}</>

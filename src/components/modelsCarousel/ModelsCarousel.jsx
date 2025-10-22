@@ -5,7 +5,7 @@ import { ModelItem } from "../modelTab/ModelTab";
 import "./ModelsCarousel.css";
 
 export function ModelsCarousel({ models, chooseModel, selectedModel }) {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className="selectedModelsCarousel">

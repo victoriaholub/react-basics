@@ -7,7 +7,7 @@ import "./SelectedClothesCarousel.css";
 import { Shoes } from "../shoes/Shoes";
 
 export function SelectedClothesCarousel({ photos, shoes, setShoes, title, selectClothingItem }) {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className="selectedClothesCarousel">
@@ -30,7 +30,6 @@ export function SelectedClothesCarousel({ photos, shoes, setShoes, title, select
                 id={item.id}
                 src={item.src}
                 name={item.name}
-                description={item.description}
                 selectClothingItem={selectClothingItem}
               />
             ))}

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Radio } from "antd";
+import { Button } from "antd";
 import { PhotoItem } from "../photoItem/PhotoItem";
 
 import { EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons";

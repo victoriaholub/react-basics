@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { HeartOutlined, SkinOutlined } from "@ant-design/icons";
+import React, { useEffect, useState, useMemo } from "react";
+import { SkinOutlined } from "@ant-design/icons";
 import { SelectedClothesCarousel } from "../selectedClothesCarousel/SelectedClothesCarousel";
 import { Client } from "@gradio/client";
 import { Button, Progress } from "antd";
@@ -17,11 +17,14 @@ export function GenerationPhoto({
   title,
   isGenerating = false,
   setSavedModels,
-  selectClothingItem
+  selectClothingItem,
+  generatedModel,
+  setGeneratedModel,
 }) {
-  const [generatedModel, setGeneratedModel] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [shouldGenerate, setShouldGenerate] = useState(isGenerating);
+  const [lastTriedOnOptions, setLastTriedOnOptions] = useState(null);
+  
 
   const generatePhoto = () => {
     if (selectedOptionsForBuild.model) {
@@ -84,6 +87,7 @@ export function GenerationPhoto({
       } finally {
         setShouldGenerate(false);
         setIsLoading(false);
+        setLastTriedOnOptions({ ...selectedOptionsForBuild });
       }
     };
 
@@ -101,6 +105,14 @@ export function GenerationPhoto({
     link.download = generatedModel.model;
     link.click();
   };
+
+  const isSelectedOptionsForBuildSame = useMemo(() => {
+    if (!lastTriedOnOptions) return false;
+    const result = Object.keys(selectedOptionsForBuild).every(
+      (key) => selectedOptionsForBuild[key] === lastTriedOnOptions[key]
+    );
+    return result;
+  }, [selectedOptionsForBuild, lastTriedOnOptions]);
 
   return (
     <div className="selectedPhoto">
@@ -130,21 +142,13 @@ export function GenerationPhoto({
         <Button
           variant="outlined"
           color="default"
-          icon={<HeartOutlined />}
+          icon={<UploadOutlined />}
           onClick={handleUploadClick}
         >
           Upload new photo
         </Button>
-        {!!generatedModel?.model ? (
-          <Button
-            variant="solid"
-            color="default"
-            icon={<UploadOutlined />}
-            onClick={saveLook}
-          >
-            Save Look
-          </Button>
-        ) : (
+        {!generatedModel?.model || !isSelectedOptionsForBuildSame ? (
+         
           <Button
             variant="solid"
             color="default"
@@ -152,6 +156,15 @@ export function GenerationPhoto({
             onClick={() => generatePhoto()}
           >
             Try On
+          </Button>
+        ) : (
+           <Button
+            variant="solid"
+            color="default"
+            icon={<UploadOutlined />}
+            onClick={saveLook}
+          >
+            Save Look
           </Button>
         )}
       </div>

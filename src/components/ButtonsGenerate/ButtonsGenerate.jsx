@@ -1,22 +1,24 @@
 import { Button } from "antd";
-import { HeartOutlined, SkinOutlined, UploadOutlined } from "@ant-design/icons";
+import { SkinOutlined, UploadOutlined } from "@ant-design/icons";
 
-export function ButtonsGenerate({generatedModel, generatePhoto, handleUploadClick, saveLook }) {
+export function ButtonsGenerate({
+  generatedModel,
+  generatePhoto,
+  handleUploadClick,
+  saveLook,
+  isSelectedOptionsForBuildSame,
+}) {
   return (
     <div className="buttonGroup">
       <Button
         variant="outlined"
         color="default"
-        icon={<HeartOutlined />}
+        icon={<UploadOutlined />}
         onClick={handleUploadClick}
       >
         Upload new photo
       </Button>
-      {generatedModel ? (
-        <Button variant="solid" color="default" icon={<UploadOutlined />} onClick={saveLook}>
-          Save Look
-        </Button>
-      ) : (
+      {!generatedModel || !isSelectedOptionsForBuildSame ? (
         <Button
           variant="solid"
           color="default"
@@ -24,6 +26,15 @@ export function ButtonsGenerate({generatedModel, generatePhoto, handleUploadClic
           onClick={() => generatePhoto()}
         >
           Try On
+        </Button>
+      ) : (
+        <Button
+          variant="solid"
+          color="default"
+          icon={<UploadOutlined />}
+          onClick={saveLook}
+        >
+          Save Look
         </Button>
       )}
     </div>

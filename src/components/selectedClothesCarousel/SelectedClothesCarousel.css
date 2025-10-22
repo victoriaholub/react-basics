@@ -60,8 +60,10 @@
     .photoItem {
       position: relative;
       width: 109px;
+      div {
+        width: 109px !important;
+      }
       img {
-        width: 109px;
         height: 122px;
       }
 

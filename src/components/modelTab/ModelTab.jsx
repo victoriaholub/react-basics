@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 
 import { SelectedClothes } from "../selectedClothes/SelectedClothes";
 import { menModel } from "../../assets/models/man/index";
@@ -33,22 +33,25 @@ export function ModelTab({
   setShoes,
   gender,
   setSavedModels,
-  selectedFromSavedModel
+  selectedFromSavedModel,
 }) {
   const [modelImages, setModelImages] = useState(womenModel);
-  const [selectedModel, setSelectedModel] = useState(!!selectedFromSavedModel?.length ? selectedFromSavedModel[0]?.modelSample : null);
-
-
+  const [selectedModel, setSelectedModel] = useState(
+    !!selectedFromSavedModel?.length
+      ? selectedFromSavedModel[0]?.modelSample
+      : null
+  );
 
   const fileInputRef = React.useRef(null);
   const [shouldGenerate, setShouldGenerate] = useState(false);
+
   const [selectedOptionsForBuild, setSelectedOptionsForBuild] = useState({
     model: selectedFromSavedModel[0]?.modelSample || null,
     top: selectedFromSavedModel[0]?.top || null,
     bottom: selectedFromSavedModel[0]?.bottom || null,
     shoes: selectedFromSavedModel[0]?.shoes || null,
   });
-
+  const [lastTriedOnOptions, setLastTriedOnOptions] = useState(null);
 
   const [isSelectedModelFile, setIsSelectedModelFile] = useState(false);
   const [generatedModel, setGeneratedModel] = useState();
@@ -61,15 +64,14 @@ export function ModelTab({
     setSelectedOptionsForBuild((prevState) => {
       return { ...prevState, model: modelUrl };
     });
+    setGeneratedModel(null)
   };
 
-
   const generatePhoto = () => {
-
     if (selectedOptionsForBuild.model) {
-
       setShouldGenerate(true);
       setIsGeneratedModelTabOpen(true);
+      
     }
   };
 
@@ -80,7 +82,7 @@ export function ModelTab({
     setSelectedOptionsForBuild((prevState) => {
       return { ...prevState, model: e.target.files[0] };
     });
-
+    setGeneratedModel(null)
   };
 
   const handleUploadClick = () => {
@@ -95,11 +97,8 @@ export function ModelTab({
       const bottom = photos.filter((photo) => photo.variant === "bottom");
 
       return { ...prevState, top, bottom, shoes };
-
     });
-
   }, [photos, shoes]);
-
 
   useEffect(() => {
     return gender === "women"
@@ -113,19 +112,16 @@ export function ModelTab({
     const generateP = async () => {
       setIsLoading(true);
 
-      const isUploadedModel = typeof selectedOptionsForBuild.model !== "string"
+      const isUploadedModel = typeof selectedOptionsForBuild.model !== "string";
       try {
-       
-        
-        
         let model;
         if (isUploadedModel) {
           model = new Blob([selectedOptionsForBuild.model], {
-          type: selectedOptionsForBuild.model.type,
-        });
+            type: selectedOptionsForBuild.model.type,
+          });
         } else {
-          const modelRes = await fetch(selectedOptionsForBuild.model)
-          model = await modelRes.blob()
+          const modelRes = await fetch(selectedOptionsForBuild.model);
+          model = await modelRes.blob();
         }
 
         const res1 = await fetch(selectedOptionsForBuild.bottom[0].src);
@@ -149,21 +145,29 @@ export function ModelTab({
           modelSample: !isUploadedModel && selectedOptionsForBuild.model,
           model: result.data[0].url,
           tabInd: 1,
-          id: Math.random().toString(36).substr(2, 9)
+          id: Math.random().toString(36).substr(2, 9),
         });
       } catch (error) {
         console.log(error);
         setShouldGenerate(false);
         setIsLoading(false);
       } finally {
-
         setShouldGenerate(false);
         setIsLoading(false);
+        setLastTriedOnOptions({ ...selectedOptionsForBuild });
       }
     };
 
     generateP();
   }, [shouldGenerate]);
+
+  const isSelectedOptionsForBuildSame = useMemo(() => {
+    if (!lastTriedOnOptions) return false;
+    const result =  Object.keys(selectedOptionsForBuild).every(
+      (key) => selectedOptionsForBuild[key] === lastTriedOnOptions[key]
+    );
+    return result
+  }, [selectedOptionsForBuild, lastTriedOnOptions]);
 
   const saveLook = () => {
     setSavedModels((prevState) => [...prevState, generatedModel]);
@@ -173,8 +177,13 @@ export function ModelTab({
     link.click();
   };
 
-  const clothes = !!selectedFromSavedModel.length ? [...selectedFromSavedModel[0]?.top, ...selectedFromSavedModel[0]?.bottom] : photos;
-  const shoesSelected = !!selectedFromSavedModel.length ? selectedFromSavedModel[0]?.shoes : shoes
+  const clothes = !!selectedFromSavedModel.length
+    ? [...selectedFromSavedModel[0]?.top, ...selectedFromSavedModel[0]?.bottom]
+    : photos;
+  const shoesSelected = !!selectedFromSavedModel.length
+    ? selectedFromSavedModel[0]?.shoes
+    : shoes;
+
 
 
   return (
@@ -182,7 +191,7 @@ export function ModelTab({
       {
         <input
           type="file"
-          accept="image/*"
+           accept="image/jpeg, image/png, image/webp"
           ref={fileInputRef}
           style={{ display: "none" }}
           onChange={handleFileChange}
@@ -222,7 +231,7 @@ export function ModelTab({
           <SelectedClothes
             photos={clothes}
             selectClothingItem={selectClothingItem}
-            shoes={ shoesSelected}
+            shoes={shoesSelected}
             setShoes={setShoes}
           />
         </>
@@ -232,6 +241,7 @@ export function ModelTab({
         generatePhoto={generatePhoto}
         handleUploadClick={handleUploadClick}
         saveLook={saveLook}
+        isSelectedOptionsForBuildSame={isSelectedOptionsForBuildSame}
       />
     </div>
   );

@@ -4,7 +4,6 @@ import { UploadOutlined } from "@ant-design/icons";
 import photoInput from "../../assets/photo-input.png";
 import { SelectedClothes } from "../selectedClothes/SelectedClothes";
 
-
 import "./PhotoTab.css";
 import { GenerationPhoto } from "../generationPhoto/GenerationPhoto";
 
@@ -15,11 +14,10 @@ export function PhotoTab({
   setShoes,
   setSavedModels,
   setActiveTabKey,
-  selectedFromSavedModel
+  selectedFromSavedModel,
 }) {
   const fileInputRef = React.useRef(null);
   const [selectedFile, setSelectedFile] = useState(null);
-
 
   const [selectedOptionsForBuild, setSelectedOptionsForBuild] = useState({
     model: selectedFromSavedModel[0]?.modelSample || null,
@@ -28,9 +26,11 @@ export function PhotoTab({
     shoes: selectedFromSavedModel[0]?.shoes || null,
   });
 
+  const [generatedModel, setGeneratedModel] = useState();
+
   const changeTabToModel = () => {
-    setActiveTabKey(1)
-  }
+    setActiveTabKey(1);
+  };
 
   const handleUploadClick = () => {
     if (fileInputRef.current) {
@@ -39,21 +39,25 @@ export function PhotoTab({
   };
   const handleFileChange = (e) => {
     setSelectedFile(e.target.files[0]);
-    
+
     setSelectedOptionsForBuild((prevState) => {
       return { ...prevState, model: e.target.files[0] };
     });
+    setGeneratedModel(null);
   };
 
-  
-  const clothes = !!selectedFromSavedModel.length ? [...selectedFromSavedModel[0]?.top, ...selectedFromSavedModel[0]?.bottom] : photos;
-  const shoesSelected = !!selectedFromSavedModel.length ? selectedFromSavedModel[0]?.shoes : shoes
+  const clothes = !!selectedFromSavedModel.length
+    ? [...selectedFromSavedModel[0]?.top, ...selectedFromSavedModel[0]?.bottom]
+    : photos;
+  const shoesSelected = !!selectedFromSavedModel.length
+    ? selectedFromSavedModel[0]?.shoes
+    : shoes;
   return (
     <div className="photoTab">
       {
         <input
           type="file"
-          accept="image/*"
+           accept="image/jpeg, image/png, image/webp"
           ref={fileInputRef}
           style={{ display: "none" }}
           onChange={handleFileChange}
@@ -73,6 +77,8 @@ export function PhotoTab({
           title="Wardrobe"
           setSavedModels={setSavedModels}
           selectClothingItem={selectClothingItem}
+          generatedModel={generatedModel}
+          setGeneratedModel={setGeneratedModel}
         />
       ) : (
         <div>
@@ -88,7 +94,8 @@ export function PhotoTab({
               Upload Photo
             </Button>
             <p>
-              Don’t have one right now? You can also <a onClick={changeTabToModel} >try them on a model</a>.
+              Don’t have one right now? You can also{" "}
+              <a onClick={changeTabToModel}>try them on a model</a>.
             </p>
           </div>
 

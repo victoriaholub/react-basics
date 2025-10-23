@@ -6,12 +6,12 @@ import LookBuilder from "../lookBuilder/LookBuilder.jsx";
 import Banner from "../../assets/banner.png";
 import "./MainPage.css";
 import {
-  bottomWomenClothes,
-  topWomenClothes,
+  womenModelDescriptionTop,
+  womenModelDescriptionBottom
 } from "../../assets/clothes/woman/index.js";
 import {
-  topMenClothes,
-  bottomMenClothes,
+  menModelDescriptionBottom,
+  menModelDescriptionTop
 } from "../../assets/clothes/man/index.js";
 
 const topClothesDescription =
@@ -19,42 +19,34 @@ const topClothesDescription =
 const bottomClothesDescription =
   "A comfortable and stylish bottom designed for everyday wear.";
 
-const womenClothes1 = topWomenClothes.map((el, ind) => ({
-  src: el,
+const womenClothes1 = womenModelDescriptionTop.map((el, ind) => ({
+  ...el,
   id: ind,
   isSelected: false,
   variant: "top",
   description: topClothesDescription,
 }));
-const womenClothes2 = bottomWomenClothes.map((el, ind) => ({
-  src: el,
+const womenClothes2 = womenModelDescriptionBottom.map((el, ind) => ({
+  ...el,
   id: ind + 10,
   isSelected: false,
   variant: "bottom",
   description: bottomClothesDescription,
 }));
 
-// const menModelDescriptionMain1 = [
-//   { brand: "Mango", model: "Polo Shirt - Brown", price: "€49.99" },
-//   {
-//     brand: "Hackett London",
-//     model: "Polo Shirt - Light Beige",
-//     price: "€97.30",
-//   },
-//   { brand: "Casual Friday", model: "Shirt - Light Sand", price: "€33.95" },
-//   { brand: "Massimo Dutti", model: "Shirt - Grey", price: "€59.95" },
-//   { brand: "Pier One", model: "Jumper - Dark Blue", price: "€35.00" },
-// ];
+;
 
-const menClothes1 = topMenClothes.map((el, ind) => ({
-  src: el,
+
+
+const menClothes1 = menModelDescriptionTop.map((el, ind) => ({
+  ...el,
   id: ind,
   isSelected: false,
   variant: "top",
   description: topClothesDescription,
 }));
-const menClothes2 = bottomMenClothes.map((el, ind) => ({
-  src: el,
+const menClothes2 = menModelDescriptionBottom.map((el, ind) => ({
+  ...el,
   id: ind + 10,
   isSelected: false,
   variant: "bottom",
@@ -65,6 +57,7 @@ const clothes = {
   men: [...menClothes1, ...menClothes2],
   women: [...womenClothes1, ...womenClothes2],
 };
+
 
 export default function MainPage() {
   const [totalSelectedClothes, setTotalSelectedClothes] = useState(0);
@@ -196,7 +189,7 @@ export default function MainPage() {
                 key={item.id}
                 id={item.id}
                 itemSelected={item.isSelected}
-                photo={item.src}
+                photo={item}
                 selectClothingItem={selectClothingItem}
               />
             ))}

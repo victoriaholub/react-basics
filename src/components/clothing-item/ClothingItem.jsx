@@ -9,7 +9,12 @@ import {
 } from "@ant-design/icons";
 import "./ClothingItem.css";
 
-export default function ClothingItem({ photo, id, itemSelected, selectClothingItem }) {
+export default function ClothingItem({
+  photo,
+  id,
+  itemSelected,
+  selectClothingItem,
+}) {
 
   const handleSelectionToggle = () => {
     const newSelectionState = !itemSelected;
@@ -19,8 +24,7 @@ export default function ClothingItem({ photo, id, itemSelected, selectClothingIt
   return (
     <div className="clothingItem">
       <div className="photo">
-        <img src={photo} height="336px" width="auto" alt="Clothing Item" />
-
+        <img src={photo.src} height="336px" width="auto" alt="Clothing Item" />
       </div>
       <div className="selection">
         <Button shape="default" icon={<HeartOutlined />} />
@@ -38,15 +42,22 @@ export default function ClothingItem({ photo, id, itemSelected, selectClothingIt
         <p className="small sposnsored">
           Sponsored <InfoCircleOutlined />
         </p>
-        <p className="brand medium timesNewRoman">Brand</p>
-        <p className="model big">Model</p>
+        <p className="brand medium timesNewRoman"> {photo?.brand}</p>
+        <p className="model big"> {photo?.model} </p>
 
         <div>
-          <Rate disabled defaultValue={4} style={{ color: "black", margin: '8px 0px' }} />
+          <Rate
+            disabled
+            defaultValue={4}
+            style={{ color: "black", margin: "8px 0px" }}
+          />
           <span>(5)</span>
         </div>
 
-        <p className="big" style={{ color: "#F5222D" }}>$49.00</p>
+        <p className="big" style={{ color: "#F5222D" }}>
+          {" "}
+          {!!photo?.price ? photo.price : "$49.00"}{" "}
+        </p>
       </div>
     </div>
   );

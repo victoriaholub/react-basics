@@ -34,6 +34,18 @@ const womenClothes2 = bottomWomenClothes.map((el, ind) => ({
   description: bottomClothesDescription,
 }));
 
+// const menModelDescriptionMain1 = [
+//   { brand: "Mango", model: "Polo Shirt - Brown", price: "€49.99" },
+//   {
+//     brand: "Hackett London",
+//     model: "Polo Shirt - Light Beige",
+//     price: "€97.30",
+//   },
+//   { brand: "Casual Friday", model: "Shirt - Light Sand", price: "€33.95" },
+//   { brand: "Massimo Dutti", model: "Shirt - Grey", price: "€59.95" },
+//   { brand: "Pier One", model: "Jumper - Dark Blue", price: "€35.00" },
+// ];
+
 const menClothes1 = topMenClothes.map((el, ind) => ({
   src: el,
   id: ind,
@@ -106,8 +118,6 @@ export default function MainPage() {
   };
 
   const [isBtnVisible, setIsBtnVisible] = useState(true);
-
-
 
   const toggleBuildLookTab = (value) => {
     setisBuildLookSelected(value);
